@@ -28,15 +28,15 @@ function FavoritesFlats({classEstate, srcImg, altImg, cost, period, description,
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FlatCard
-                    classEstate={classEstate}
-                    srcImg={srcImg}
-                    altImg={altImg}
-                    cost={cost}
-                    period={period}
-                    description={description}
-                    typeEstate={typeEstate}
-                  />
+                  {/*<FlatCard*/}
+                  {/*  classEstate={classEstate}*/}
+                  {/*  srcImg={srcImg}*/}
+                  {/*  altImg={altImg}*/}
+                  {/*  cost={cost}*/}
+                  {/*  period={period}*/}
+                  {/*  description={description}*/}
+                  {/*  typeEstate={typeEstate}*/}
+                  {/*/>*/}
 
                   <article className="favorites__card place-card">
                     <div className="place-card__mark">

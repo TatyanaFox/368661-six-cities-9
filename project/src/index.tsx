@@ -25,15 +25,37 @@ const SearchResult = {
   RESULT: 312,
 };
 
-const FlatCardSet = {
-  CLASS_ESTATE: 'premium',
-  SRC_IMG: 'img/apartment-01.jpg',
-  ALT_IMG: 'Place image',
-  COST: 120,
-  PERIOD: 'night',
-  DESCRIPTION: 'Beautiful &amp; luxurious apartment at great location',
-  TYPE_ESTATE: 'Apartment',
-};
+const FlatCards = [
+  {
+    classEstate: 'premium',
+    srcImg: 'img/apartment-01.jpg',
+    altImg: 'Place image',
+    cost: 120,
+    period: 'night',
+    description: 'Beautiful &amp; luxurious apartment at great location',
+    typeEstate: 'Apartment',
+  },
+  {
+    classEstate: 'premium',
+    srcImg: 'img/apartment-02.jpg',
+    altImg: 'Place image',
+    cost: 10000,
+    period: 'night',
+    description: 'Beautiful &amp;',
+    typeEstate: 'Apartment',
+  },
+  {
+    classEstate: 'premium',
+    srcImg: 'img/apartment-03.jpg',
+    altImg: 'Place image',
+    cost: 76,
+    period: 'night',
+    description: 'luxurious apartment at great location',
+    typeEstate: 'Apartment',
+  },
+];
+
+const cards = FlatCards.map((card: object) => (card));
 
 ReactDOM.render(
   <React.StrictMode>
@@ -52,14 +74,7 @@ ReactDOM.render(
       userStatus={User.USER_STATUS}
 
       searchResult={SearchResult.RESULT}
-
-      classEstate = {FlatCardSet.CLASS_ESTATE}
-      srcImg = {FlatCardSet.SRC_IMG}
-      altImg={FlatCardSet.ALT_IMG}
-      cost={FlatCardSet.COST}
-      period={FlatCardSet.PERIOD}
-      description={FlatCardSet.DESCRIPTION}
-      typeEstate={FlatCardSet.TYPE_ESTATE}
+      flatCards={cards}
     />
   </React.StrictMode>,
   document.getElementById('root'));

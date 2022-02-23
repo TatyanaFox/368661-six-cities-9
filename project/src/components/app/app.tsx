@@ -24,18 +24,20 @@ type AppProps = {
   userStatus: boolean,
 
   searchResult: number,
-
-  classEstate?: string
-  srcImg: string
-  altImg: string,
-  cost: number,
-  period: string,
-  description: string
-  typeEstate: string
+  flatCards: {
+    classEstate?: string
+    srcImg: string
+    altImg: string,
+    cost: number,
+    period: string,
+    description: string
+    typeEstate: string
+  },
 }
 
-function App({arrCities, logoSrc, logoAlt, userEmail, userStatus, searchResult, classEstate, srcImg, altImg, cost, period, description, typeEstate, propertyClass, propertyDescription, propertyRating, propertyCost}: AppProps): JSX.Element {
+function App({arrCities, logoSrc, logoAlt, userEmail, userStatus, searchResult, flatCards, propertyClass, propertyDescription, propertyRating, propertyCost}: AppProps): JSX.Element {
   return (
+
     <>
       <Header
         logoSrc={logoSrc}
@@ -47,12 +49,7 @@ function App({arrCities, logoSrc, logoAlt, userEmail, userStatus, searchResult, 
       <MainPage
         arrCities={arrCities}
         searchResult={searchResult}
-        srcImg={srcImg}
-        altImg={altImg}
-        cost={cost}
-        period={period}
-        description={description}
-        typeEstate={typeEstate}
+        flatCards={flatCards}
       />
 
       {/*<FavoritesFlats*/}
