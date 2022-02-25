@@ -7,20 +7,18 @@ type MainPAgeProps = {
 
   searchResult: number,
 
-  flatCards: {
-    classEstate?: string
-    srcImg: string
-    altImg: string,
-    cost: number,
-    period: string,
-    description: string
-    typeEstate: string
-  },
+  classEstate?: string
+  srcImg: string
+  altImg: string,
+  cost: number,
+  period: string,
+  description: string,
+  typeEstate: string
 }
 
-// function MainPage({arrCities, searchResult, classEstate, srcImg, altImg, cost, period, description, typeEstate}: MainPAgeProps): JSX.Element {
+//function MainPage({arrCities, searchResult, flatCards}: MainPAgeProps): JSX.Element {
 
-function MainPage({arrCities, searchResult, flatCards}: MainPAgeProps): JSX.Element {
+function MainPage({arrCities, searchResult, classEstate, srcImg, altImg, cost, period, description, typeEstate}: MainPAgeProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
 
@@ -51,7 +49,57 @@ function MainPage({arrCities, searchResult, flatCards}: MainPAgeProps): JSX.Elem
               </form>
 
               <div className="cities__places-list places__list tabs__content">
-                <FlatCard flatCards={flatCards} />
+                <FlatCard
+                  classEstate={classEstate}
+                  srcImg={srcImg}
+                  altImg={altImg}
+                  cost={cost}
+                  period={period}
+                  description={description}
+                  typeEstate={typeEstate}
+                />
+
+
+                <FlatCard
+                  srcImg={srcImg}
+                  altImg={altImg}
+                  cost={cost}
+                  period={period}
+                  description={description}
+                  typeEstate={typeEstate}
+                />
+
+
+                <FlatCard
+                  classEstate={classEstate}
+                  srcImg={srcImg}
+                  altImg={altImg}
+                  cost={cost}
+                  period={period}
+                  description={description}
+                  typeEstate={typeEstate}
+                />
+
+
+                <FlatCard
+                  srcImg={srcImg}
+                  altImg={altImg}
+                  cost={cost}
+                  period={period}
+                  description={description}
+                  typeEstate={typeEstate}
+                />
+
+
+                <FlatCard
+                  classEstate={classEstate}
+                  srcImg={srcImg}
+                  altImg={altImg}
+                  cost={cost}
+                  period={period}
+                  description={description}
+                  typeEstate={typeEstate}
+                />
               </div>
             </section>
             <div className="cities__right-section">
