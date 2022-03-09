@@ -1,29 +1,71 @@
 import React from 'react';
+// import {useState} from 'react';
+import { Link } from 'react-router-dom';
+import { PropertyData } from '../../types/property';
 
 type FlatCardProps = {
-  classEstate?: string
-  srcImg: string
-  altImg: string
-  cost:number,
-  period: string,
-  description: string,
-  typeEstate: string
+  flatCard: PropertyData,
 }
 
-const spanStyle = {
-  width: '80%',
-};
+function FlatCardComponent({flatCard}: FlatCardProps): JSX.Element {
+  const {classEstate, srcImg, altImg, cost, period, description, typeEstate, isFavorites, ratingStarts, id} = flatCard;
+  const path = `/room/${id}`;
 
-function FlatCard({classEstate, srcImg, altImg, cost, period, description, typeEstate}: FlatCardProps): JSX.Element {
+  // const [pathId, setPathId] = useState(0);
+
+  // const mouseOverHandler = (id) => {
+  //   setPathId(id);
+  //   console.log('test');
+  // };
+
+  if (isFavorites) {
+    return (
+      <article className="favorites__card place-card">
+        <div className="place-card__mark">
+          <span>{classEstate}</span>
+        </div>
+        <div className="favorites__image-wrapper place-card__image-wrapper">
+          <Link to='/room'>
+            <img className="place-card__image" src={srcImg} width="150" height="110" alt={altImg} />
+          </Link>
+        </div>
+        <div className="favorites__card-info place-card__info">
+          <div className="place-card__price-wrapper">
+            <div className="place-card__price">
+              <b className="place-card__price-value">&euro;{cost}</b>
+              <span className="place-card__price-text">&#47;&nbsp;{period}</span>
+            </div>
+            <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+              <svg className="place-card__bookmark-icon" width="18" height="19">
+                <use xlinkHref="#icon-bookmark" />
+              </svg>
+              <span className="visually-hidden">In bookmarks</span>
+            </button>
+          </div>
+          <div className="place-card__rating rating">
+            <div className="place-card__stars rating__stars">
+              <span style={{width: `${ratingStarts}%`}} />
+              <span className="visually-hidden">Rating</span>
+            </div>
+          </div>
+          <h2 className="place-card__name">
+            <Link to='/room'>{description}</Link>
+          </h2>
+          <p className="place-card__type">{typeEstate}</p>
+        </div>
+      </article>
+    );
+  }
+  // onMouseOver={mouseOverHandler}
   return (
     <article className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>{classEstate}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={path}>
           <img className="place-card__image" src={srcImg} width="260" height="200" alt={altImg} />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -40,12 +82,12 @@ function FlatCard({classEstate, srcImg, altImg, cost, period, description, typeE
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={spanStyle} />
+            <span style={{width: `${ratingStarts}%`}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{description}</a>
+          <Link to={path}>{description}</Link>
         </h2>
         <p className="place-card__type">{typeEstate}</p>
       </div>
@@ -53,4 +95,4 @@ function FlatCard({classEstate, srcImg, altImg, cost, period, description, typeE
   );
 }
 
-export default FlatCard;
+export default FlatCardComponent;

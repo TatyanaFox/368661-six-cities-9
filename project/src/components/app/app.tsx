@@ -1,43 +1,38 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
-import PrivateRoute from '../private-route/private-route';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// AuthorizationStatus
+import { AppRoute } from '../../const';
+import { City } from '../../types/cities';
+import { PropertyData, PropertyImage, Host } from '../../types/property';
+import { ReviewsList } from '../../types/reviews';
+
+// import PrivateRoute from '../private-route/private-route';
 
 import Header from '../header/header';
 import Footer from '../footer/footer';
 
-import MainPage from '../main/main-full/main-page';
-import FavoritesFlats from '../favorites/favorites-full/favorites';
-import LoginPage from '../login/login';
+import MainPage from '../main/main-page';
+import FavoritesFlats from '../favorites/favorites';
 import PropertyPage from '../property/property-page';
+import LoginPage from '../login/login';
 import ErrorPage from '../404/404';
 
 type AppProps = {
-  propertyClass: string,
-  propertyDescription: string,
-  propertyRating: number,
-  propertyCost: number,
+  propertyHost: Host,
+  propertyGallery: PropertyImage[],
+  propertyDataList: PropertyData[];
+  reviewsProperty: ReviewsList,
 
-  arrCities: string[],
+  cities: City[],
 
   logoSrc: string,
   logoAlt: string,
 
   userEmail: string,
   userStatus: boolean,
-
-  searchResult: number,
-
-  classEstate?: string
-  srcImg: string
-  altImg: string,
-  cost: number,
-  period: string,
-  description: string
-  typeEstate: string,
 }
 
-function App({arrCities, logoSrc, logoAlt, userEmail, userStatus, searchResult, classEstate, srcImg, altImg, cost, period, description, typeEstate, propertyClass, propertyDescription, propertyRating, propertyCost}: AppProps): JSX.Element {
+function App({cities, logoSrc, logoAlt, userEmail, userStatus, reviewsProperty, propertyDataList, propertyGallery, propertyHost }: AppProps): JSX.Element {
   return (
 
     <BrowserRouter>
@@ -49,20 +44,13 @@ function App({arrCities, logoSrc, logoAlt, userEmail, userStatus, searchResult, 
       />
 
       <Routes>
-
         <Route
           path={AppRoute.Root}
           element={
             <MainPage
-              arrCities={arrCities}
-              searchResult={searchResult}
-              classEstate={classEstate}
-              srcImg={srcImg}
-              altImg={altImg}
-              cost={cost}
-              period={period}
-              description={description}
-              typeEstate={typeEstate}
+              cities={cities}
+
+              propertyDataList={propertyDataList}
             />
           }
         />
@@ -70,18 +58,11 @@ function App({arrCities, logoSrc, logoAlt, userEmail, userStatus, searchResult, 
         <Route
           path={AppRoute.FavoriteFlats}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
-            >
-              <FavoritesFlats
-                srcImg={srcImg}
-                altImg={altImg}
-                cost={cost}
-                period={period}
-                description={description}
-                typeEstate={typeEstate}
-              />
-            </PrivateRoute>
+            // <PrivateRoute
+            //   authorizationStatus={AuthorizationStatus.NoAuth}
+            // >
+            <FavoritesFlats propertyDataList={propertyDataList}/>
+            // </PrivateRoute>
           }
         />
 
@@ -89,10 +70,10 @@ function App({arrCities, logoSrc, logoAlt, userEmail, userStatus, searchResult, 
           path={AppRoute.PropertyPage}
           element={
             <PropertyPage
-              propertyClass={propertyClass}
-              propertyDescription={propertyDescription}
-              propertyRating={propertyRating}
-              propertyCost={propertyCost}
+              propertyDataList={propertyDataList}
+              propertyGallery={propertyGallery}
+              propertyHost={propertyHost}
+              reviewsProperty={reviewsProperty}
             />
           }
         />
