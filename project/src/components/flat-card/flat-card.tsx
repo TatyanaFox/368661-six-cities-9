@@ -1,5 +1,4 @@
 import React from 'react';
-// import {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { PropertyData } from '../../types/property';
 
@@ -10,13 +9,6 @@ type FlatCardProps = {
 function FlatCardComponent({flatCard}: FlatCardProps): JSX.Element {
   const {classEstate, srcImg, altImg, cost, period, description, typeEstate, isFavorites, ratingStarts, id} = flatCard;
   const path = `/room/${id}`;
-
-  // const [pathId, setPathId] = useState(0);
-
-  // const mouseOverHandler = (id) => {
-  //   setPathId(id);
-  //   console.log('test');
-  // };
 
   if (isFavorites) {
     return (
@@ -56,7 +48,7 @@ function FlatCardComponent({flatCard}: FlatCardProps): JSX.Element {
       </article>
     );
   }
-  // onMouseOver={mouseOverHandler}
+
   return (
     <article className="cities__place-card place-card">
       <div className="place-card__mark">

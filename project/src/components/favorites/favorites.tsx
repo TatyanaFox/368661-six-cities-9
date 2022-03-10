@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { PropertyData } from '../../types/property';
-
 import FlatCardComponent from '../flat-card/flat-card';
 
 type FavoritesProps = {
@@ -13,10 +12,10 @@ function FavoritesFlats({ propertyDataList }: FavoritesProps): JSX.Element {
   const condition = (propertyDataList.length === 0);
 
   return(
-    <div className={condition ? 'page page--favorites-empty' : 'page'}>
-      <main className={condition ? 'page__main page__main--favorites page__main--favorites-empty' : 'page__main page__main--favorites'}>
-        <div className={condition ? 'page__favorites-container container' : 'page__favorites-container container'}>
-          <section className={condition ? 'favorites favorites--empty' : 'favorites'}>
+    <div className={`page ${condition ? 'page page--favorites-empty' : ''}`}>
+      <main className={`page__main page__main--favorites ${condition ? 'page__main--favorites-empty' : ''}`}>
+        <div className='page__favorites-container container'>
+          <section className={`favorites ${condition ? 'favorites--empty' : ''}`}>
             <h1 className="favorites__title">
               {condition ? 'Favorites (empty)' : 'Saved listing'}
             </h1>
