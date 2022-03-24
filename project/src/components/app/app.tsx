@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// AuthorizationStatus
 import { AppRoute } from '../../const';
 import { City } from '../../types/cities';
+import { Points } from '../../types/points';
 import { PropertyData, PropertyImage, Host } from '../../types/property';
 import { ReviewsList } from '../../types/reviews';
 
-// import PrivateRoute from '../private-route/private-route';
+import PrivateRoute from '../private-route/private-route';
+import { AuthorizationStatus } from '../../const';
 
 import Header from '../header/header';
 import Footer from '../footer/footer';
@@ -24,6 +25,7 @@ type AppProps = {
   reviewsProperty: ReviewsList,
 
   cities: City[],
+  points: Points[],
 
   logoSrc: string,
   logoAlt: string,
@@ -32,9 +34,8 @@ type AppProps = {
   userStatus: boolean,
 }
 
-function App({cities, logoSrc, logoAlt, userEmail, userStatus, reviewsProperty, propertyDataList, propertyGallery, propertyHost }: AppProps): JSX.Element {
+function App({cities, points, logoSrc, logoAlt, userEmail, userStatus, reviewsProperty, propertyDataList, propertyGallery, propertyHost }: AppProps): JSX.Element {
   return (
-
     <BrowserRouter>
       <Header
         logoSrc={logoSrc}
@@ -49,7 +50,7 @@ function App({cities, logoSrc, logoAlt, userEmail, userStatus, reviewsProperty, 
           element={
             <MainPage
               cities={cities}
-
+              points={points}
               propertyDataList={propertyDataList}
             />
           }
@@ -58,11 +59,11 @@ function App({cities, logoSrc, logoAlt, userEmail, userStatus, reviewsProperty, 
         <Route
           path={AppRoute.FavoriteFlats}
           element={
-            // <PrivateRoute
-            //   authorizationStatus={AuthorizationStatus.NoAuth}
-            // >
-            <FavoritesFlats propertyDataList={propertyDataList}/>
-            // </PrivateRoute>
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <FavoritesFlats propertyDataList={propertyDataList}/>
+            </PrivateRoute>
           }
         />
 

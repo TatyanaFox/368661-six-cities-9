@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { citiesList } from './mocks/cities';
+import { pointsList } from './mocks/points';
 import { propertyDataList, propertyGallery, propertyHost} from './mocks/property';
 import { reviewsProperty } from './mocks/reviews';
 
@@ -27,6 +28,7 @@ ReactDOM.render(
       reviewsProperty={reviewsProperty}
 
       cities={citiesList}
+      points={pointsList}
 
       logoSrc={LogoHeader.LOGO_SRC}
       logoAlt={LogoHeader.LOGO_ALT}
