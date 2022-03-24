@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { City } from '../../types/cities';
 import { PropertyData } from '../../types/property';
-import { Points } from '../../types/points';
 import FlatCardComponent from '../flat-card/flat-card';
-import MapComponent from '../map/mapComponent';
-import List from '../map/list';
 
 type MainPAgeProps = {
   cities: City[],
   propertyDataList: PropertyData[],
-  points: Points[],
 }
 
-function MainPage({cities, propertyDataList, points}: MainPAgeProps): JSX.Element {
+function MainPage({cities, propertyDataList}: MainPAgeProps): JSX.Element {
   const condition = !propertyDataList.length;
   const citesList = cities.map((town) => (
     <li className="locations__item" key={town.id}>
@@ -23,15 +19,6 @@ function MainPage({cities, propertyDataList, points}: MainPAgeProps): JSX.Elemen
       </Link>
     </li>
   ));
-
-  const [selectedPoint, setSelectedPoint] = useState({});
-
-  const onListItemHover = (listItemName: (string)) => {
-    const currentPoint: any = points.find((point) =>
-      point.title === listItemName,
-    );
-    setSelectedPoint(currentPoint);
-  };
 
   return (
     <div className="page page--gray page--main">
@@ -86,10 +73,7 @@ function MainPage({cities, propertyDataList, points}: MainPAgeProps): JSX.Elemen
                       </div>
                     </section>
                     <div className="cities__right-section">
-                      <section className="cities__map map">
-                        <List points={points} onListItemHover={onListItemHover} />
-                        <MapComponent city={cities[0]} points={points} selectedPoint={selectedPoint} />
-                      </section>
+                      <section className="cities__map map" />
                     </div>
                   </>
                 )
